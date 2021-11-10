@@ -1,4 +1,4 @@
-32const router = require('express').Router();
+const router = require('express').Router();
 const { Tag, Product, ProductTag } = require('../../models');
 
 // The `/api/tags` endpoint
@@ -30,8 +30,6 @@ router.get('/:id', async (req, res) => {
     res.status(500).json(err);
   }
 });
-});
-
 
   // create a new tag
 router.post('/', (req, res) => {
@@ -47,11 +45,11 @@ router.post('/', (req, res) => {
 
   // update a tag's name by its `id` value
 router.put('/:id', (req, res) => {
-  Book.update(
+  Book.update( req.body, {
     where: {
       book_id: req.params.book_id,
     },
-  )
+  })
   .then((updatedTag) => {
     res.json(updatedTag);
   })
